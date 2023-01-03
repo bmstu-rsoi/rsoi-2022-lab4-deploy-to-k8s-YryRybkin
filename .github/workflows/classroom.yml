@@ -48,7 +48,7 @@ jobs:
         run: mkdir $HOME/.kube
           
       - name: Send YC config to K8S 
-        run: echo ${{ secrets.YC_CONFIG }} | base64 -d > $HOME/.kube/config
+        run: cp ./k8s/config $HOME/.kube/config
             
       - name: Delete old Service pods
         run: helm delete services
