@@ -19,7 +19,7 @@ contexts:
   name: default
 - context:
     cluster: yc-managed-k8s-catq8vjd3sf5pi7uhdlm
-    user: yc-managed-k8s-catq8vjd3sf5pi7uhdlm
+    user: admin
   name: yc-lab4-kubernetes
 current-context: yc-lab4-kubernetes
 kind: Config
@@ -28,14 +28,3 @@ users:
 - name: admin
   user:
     token: t1.9euelZqJjpHMx5PJy5KZjcrIk4yRmu3rnpWaz5KPnonPjoyTx4-ci8-SmZzl9PdZLC9i-e9dFQ7y3fT3GVssYvnvXRUO8g.IBJisLHeMxhgYcFWA2Du1Mn0zofRal6iDSImCnMf_gVfOfG0U1MLvJHNWpZ9FhncFV0be2BClQGwL1r1uE3fCQ
-- name: yc-managed-k8s-catq8vjd3sf5pi7uhdlm
-  user:
-    exec:
-      apiVersion: client.authentication.k8s.io/v1beta1
-      args:
-      - k8s
-      - create-token
-      - --profile=default
-      command: C:\Users\1\yandex-cloud\bin\yc.exe
-      env: null
-      provideClusterInfo: false
