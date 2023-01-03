@@ -23,9 +23,9 @@ import java.util.UUID;
 @Tag(name = "@Gateway API")
 public class GatewayAPIController {
 
-    private static final String LOYALTYBASEURL = "http://loyalty:8050/api/v1/services/loyalty";
-    private static final String PAYMENTBASEURL = "http://payment:8060/api/v1/services/payment";
-    private static final String RESERVATIONBASEURL = "http://reservation:8070/api/v1/services/reservation";
+    private static final String LOYALTYBASEURL = "http://loyalty-service:8050/api/v1/services/loyalty";
+    private static final String PAYMENTBASEURL = "http://payment-service:8060/api/v1/services/payment";
+    private static final String RESERVATIONBASEURL = "http://reservation-service:8070/api/v1/services/reservation";
     private static final String X_USER_NAME = "X-User-Name";
 
 
