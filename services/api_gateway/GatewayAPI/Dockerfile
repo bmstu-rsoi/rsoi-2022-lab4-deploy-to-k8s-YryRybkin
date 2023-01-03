@@ -9,7 +9,10 @@ ENV PORT=8080
 EXPOSE 8080
 WORKDIR application
 COPY --from=builder application/spring-boot-loader/ ./
+RUN true
 COPY --from=builder application/dependencies/ ./
+RUN true
 COPY --from=builder application/snapshot-dependencies/ ./
+RUN true
 COPY --from=builder application/application/ ./
 ENTRYPOINT ["java", "-Dserver.port=${PORT}", "-Xmx512m", "-Xms512m", "org.springframework.boot.loader.JarLauncher"]
