@@ -54,7 +54,7 @@ jobs:
         run: helm delete services
         
       - name: Delete old Database pods
-        run: delete databases
+        run: helm delete databases
             
       - name: Deploy DB to YC
         run: helm install databases k8s/postgres-chart
