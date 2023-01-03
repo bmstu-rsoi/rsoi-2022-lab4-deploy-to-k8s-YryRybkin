@@ -28,7 +28,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepo reservationRepo;
 
 
-    private static final String GATEWAYURL = "http://gateway:8080/api/v1";
+    private static final String GATEWAYURL = "http://gateway-service:8080/api/v1";
     private static final String X_USER_NAME = "X-User-Name";
 
     public ReservationServiceImpl(HotelsRepo hotelsRepo, ReservationRepo reservationRepo) {
