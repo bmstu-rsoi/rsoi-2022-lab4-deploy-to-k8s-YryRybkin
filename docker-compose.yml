@@ -1,0 +1,43 @@
+version: "3"
+services:
+  postgres:
+    image: library/postgres:13
+    container_name: postgres
+    restart: on-failure
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./postgres/:/docker-entrypoint-initdb.d/
+      - ./30-init.sql:/docker-entrypoint-initdb.d/30-init.sql
+    ports:
+      - "5432:5432"
+
+  gateway:
+    image: rybkiny/gateway
+    build: ./services/api_gateway/GatewayAPI/
+    ports:
+      - "8080:8080"
+
+  reservation:
+    image: rybkiny/reservation
+    build: ./services/reservation_service/ReservationApplication/
+    ports:
+      - "8070:8070"
+
+  payment:
+    image: rybkiny/payment
+    build: ./services/payment_service/PaymentApplication/
+    ports:
+      - "8060:8060"
+
+  loyalty:
+    image: rybkiny/loyalty
+    build: ./services/loyalty_service/LoyaltyApplication/
+    ports:
+      - "8050:8050"
+
+volumes:
+  db-data:
