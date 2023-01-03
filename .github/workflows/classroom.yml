@@ -35,10 +35,11 @@ jobs:
       - name: Build images
         run: docker-compose build
         
-      - name: Push images
-        run: |
-            docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-            docker-compose push
+      - name: Docker login
+        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+        
+      - name: Docker Push 
+        run: docker-compose push
 
       - name: Run API Tests
         uses: matt-ball/newman-action@master
