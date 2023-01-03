@@ -41,20 +41,26 @@ jobs:
       - name: Docker Push 
         run: docker-compose push
 
-      - name: Send YC config to K8S
-        run: |
-            mkdir $HOME/.kube
-            echo ${{ secrets.YC_CONFIG }} | base64 -d > $HOME/.kube/config
+      - name: Install Kubectl
+        uses: Azure/setup-kubectl@v3.1
+
+      - name: Create .kube folder
+        run: mkdir $HOME/.kube
+          
+      - name: Send YC config to K8S 
+        run: echo ${{ secrets.YC_CONFIG }} | base64 -d > $HOME/.kube/config
             
-      - name: Delete old pods
-        run: |
-            helm delete services
-            helm delete databases
+      - name: Delete old Service pods
+        run: helm delete services
+        
+      - name: Delete old Database pods
+        run: delete databases
             
-      - name: Deploy DB and Services to YC
-        run: |
-            helm install databases k8s/postgres-chart
-            helm install services k8s/services-chart
+      - name: Deploy DB to YC
+        run: helm install databases k8s/postgres-chart
+       
+      - name: Deploy Services to YC 
+        run: helm install services k8s/services-chart
         
       - name: Wait 90 seconds
         run: sleep 90
