@@ -9,6 +9,7 @@ metadata:
     app.kubernetes.io/part-of: micro-services
     app.kubernetes.io/managed-by: helm
 spec:
+  {{ if .Values.service.isGateway }}
   ingressClassName: nginx
   rules:
     - http:
@@ -20,3 +21,4 @@ spec:
                 name: {{ .Chart.Name }}-service
                 port:
                   number: {{ .Values.service.port }}
+    {{- end}}
