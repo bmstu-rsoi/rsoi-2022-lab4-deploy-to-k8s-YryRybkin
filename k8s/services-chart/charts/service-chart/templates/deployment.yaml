@@ -27,22 +27,7 @@ spec:
           - name: {{ .Chart.Name}}
             imagePullPolicy: Always
             image: {{ .Values.service.image.name }}:{{ .Values.service.image.version }}            
-            env:
-              {{ if .Values.service.isGateway }}
-              - name: LOYALTY_URL
-                value: http://loyalty-service:8050
-              - name: PAYMENT_URL
-                value: http://payment-service:8060
-              - name: RESERVATION_URL
-                value: http://reservation-service:8070
-              {{ else }}
-              - name: GATEWAY_URL
-                value: http://gateway-service:8080
-              {{- end}}
-              {{ if .Values.service.database.url }}
-              - name: DATABASE_URL
-                value: "{{ .Values.service.database.url }}"
-              {{- end }}              
+          
             ports:
               - name: web
                 containerPort: {{ .Values.service.port }}
