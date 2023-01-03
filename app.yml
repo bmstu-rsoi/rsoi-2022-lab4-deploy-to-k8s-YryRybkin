@@ -103,7 +103,7 @@ items:
             - env:
                 - name: PORT
                   value: "8080"
-              image: alexeymrvz/gateway
+              image: rybkiny/gateway
               name: gateway
               ports:
                 - containerPort: 80
@@ -133,7 +133,7 @@ items:
             - env:
                 - name: PORT
                   value: "8070"
-              image: alexeymrvz/reservation
+              image: rybkiny/reservation
               name: loyalty
               ports:
                 - containerPort: 80
@@ -163,7 +163,7 @@ items:
             - env:
                 - name: PORT
                   value: "8060"
-              image: alexeymrvz/payment
+              image: rybkiny/payment
               name: payment
               ports:
                 - containerPort: 80
@@ -227,7 +227,7 @@ items:
             - env:
                 - name: PORT
                   value: "8050"
-              image: alexeymrvz/loyalty
+              image: rybkiny/loyalty
               name: loyalty
               ports:
                 - containerPort: 80
