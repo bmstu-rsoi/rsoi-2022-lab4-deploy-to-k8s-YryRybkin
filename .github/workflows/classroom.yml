@@ -41,11 +41,29 @@ jobs:
       - name: Docker Push 
         run: docker-compose push
 
+      - name: Send YC config to K8S
+        run: |
+            mkdir $HOME/.kube
+            echo ${{ secrets.YC_CONFIG }} | base64 -d > $HOME/.kube/config
+            
+      - name: Delete old pods
+        run: |
+            helm delete services
+            helm delete databases
+            
+      - name: Deploy DB and Services to YC
+        run: |
+            helm install databases k8s/postgres-chart
+            helm install services k8s/services-chart
+        
+      - name: Wait 90 seconds
+        run: sleep 90
+
       - name: Run API Tests
         uses: matt-ball/newman-action@master
         with:
-          collection: <variant>/postman/collection.json
-          environment: <variant>/postman/environment.json
+          collection: v2/postman/collection.json
+          environment: v2/postman/environment.json
           delayRequest: 100
           reporters: '[ "cli" ]'
 
